@@ -7,52 +7,255 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# Inventory Management System
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A comprehensive Laravel-based web application for managing products, customers, billing, and inventory with role-based access control.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+![Laravel](https://img.shields.io/badge/Laravel-10.x-red.svg)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.x-purple.svg)
+![PHP](https://img.shields.io/badge/PHP-8.2-blue.svg)
+![MySQL](https://img.shields.io/badge/MySQL-8.x-orange.svg)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Features
 
-## Learning Laravel
+### 🔐 Authentication & Authorization
+- User registration and login system
+- Role-based access control (Admin/Customer)
+- Secure password hashing
+- Protected routes based on user roles
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 📦 Product Management
+- Complete CRUD operations for products
+- Real-time stock tracking
+- Search functionality
+- Card-based product display
+- Stock level validation
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 👥 Customer Management
+- Customer profile management
+- User-customer relationship mapping
+- Admin-only customer management
+- Secure registration with password requirements
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 💰 Billing System
+- Bill creation with multiple items
+- Automatic total calculation
+- Payment status tracking (Paid/Pending)
+- Bill history and viewing
+- One-click payment marking
 
-## Laravel Sponsors
+### 🛒 Shopping Cart
+- Add/remove products from cart
+- Quantity adjustment
+- Real-time cart counter
+- Checkout to generate bills
+- Empty cart state handling
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 🎨 User Experience
+- Responsive design for all devices
+- Consistent UI/UX across all pages
+- Intuitive navigation
+- Visual feedback for actions
+- Form validation and error handling
 
-### Premium Partners
+## Technology Stack
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+- **Backend Framework:** Laravel 10
+- **Frontend:** Bootstrap 5, Blade Templates
+- **Database:** MySQL
+- **Authentication:** Laravel Auth
+- **Icons:** Font Awesome
+- **Date Handling:** Carbon
+
+## Installation
+
+### Prerequisites
+- PHP 8.2 or higher
+- Composer
+- MySQL 8.0 or higher
+- Node.js and NPM (for frontend assets)
+
+### Setup Instructions
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/inventory-management-system.git
+   cd inventory-management-system
+   ```
+
+2. **Install PHP dependencies**
+   ```bash
+   composer install
+   ```
+
+3. **Install frontend dependencies**
+   ```bash
+   npm install
+   npm run build
+   ```
+
+4. **Environment setup**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+5. **Configure database**
+   - Create a MySQL database
+   - Update `.env` file with database credentials:
+     ```
+     DB_DATABASE=your_database_name
+     DB_USERNAME=your_username
+     DB_PASSWORD=your_password
+     ```
+
+6. **Run migrations**
+   ```bash
+   php artisan migrate
+   ```
+
+7. **Seed the database (optional)**
+   ```bash
+   php artisan db:seed
+   ```
+
+8. **Start the development server**
+   ```bash
+   php artisan serve
+   ```
+
+9. **Access the application**
+   Open your browser and navigate to `http://localhost:8000`
+
+## Usage
+
+### Admin Account
+- Manage all products (add, edit, delete)
+- View and manage all customers
+- Create bills for any customer
+- View all bills in the system
+
+### Customer Account
+- Browse available products
+- Add products to cart
+- View and manage shopping cart
+- Checkout to generate bills
+- View personal bill history
+
+### Default Accounts
+After seeding, you'll have:
+- **Admin:** admin@example.com / password
+- **Customer:** customer@example.com / password
+
+## Project Structure
+
+```
+app/
+├── Http/
+│   ├── Controllers/
+│   │   ├── AuthController.php
+│   │   ├── BillController.php
+│   │   ├── CartController.php
+│   │   ├── CustomerController.php
+│   │   ├── HomeController.php
+│   │   └── ProductController.php
+│   └── Middleware/
+├── Models/
+│   ├── Bill.php
+│   ├── BillItem.php
+│   ├── Cart.php
+│   ├── Customer.php
+│   ├── Product.php
+│   └── User.php
+database/
+├── migrations/
+│   ├── create_users_table.php
+│   ├── create_products_table.php
+│   ├── create_customers_table.php
+│   ├── create_bills_table.php
+│   ├── create_bill_items_table.php
+│   └── create_carts_table.php
+resources/
+├── views/
+│   ├── layouts/
+│   │   └── app.blade.php
+│   ├── auth/
+│   │   ├── login.blade.php
+│   │   └── register.blade.php
+│   ├── bills/
+│   │   ├── index.blade.php
+│   │   ├── create.blade.php
+│   │   └── show.blade.php
+│   ├── cart/
+│   │   └── index.blade.php
+│   ├── customers/
+│   │   ├── index.blade.php
+│   │   ├── create.blade.php
+│   │   ├── edit.blade.php
+│   │   └── show.blade.php
+│   ├── products/
+│   │   ├── index.blade.php
+│   │   ├── create.blade.php
+│   │   ├── edit.blade.php
+│   │   └── show.blade.php
+│   └── home.blade.php
+routes/
+└── web.php
+```
+
+## API Endpoints
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | / | Home page | No |
+| GET | /login | Login form | No |
+| POST | /login | Authenticate user | No |
+| GET | /register | Registration form | No |
+| POST | /register | Register new user | No |
+| POST | /logout | Logout user | Yes |
+| GET | /products | List products | No |
+| POST | /products | Create product | Admin |
+| GET | /products/{id} | Show product | No |
+| PUT | /products/{id} | Update product | Admin |
+| DELETE | /products/{id} | Delete product | Admin |
+| GET | /customers | List customers | Admin |
+| POST | /customers | Create customer | Admin |
+| GET | /customers/{id} | Show customer | Admin |
+| PUT | /customers/{id} | Update customer | Admin |
+| DELETE | /customers/{id} | Delete customer | Admin |
+| GET | /bills | List bills | Yes |
+| POST | /bills | Create bill | Yes |
+| GET | /bills/{id} | Show bill | Yes |
+| POST | /bills/{id}/pay | Mark bill as paid | Yes |
+| GET | /cart | Show cart | Customer |
+| POST | /cart/checkout | Checkout cart | Customer |
+| DELETE | /cart/{id} | Remove from cart | Customer |
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## Code of Conduct
+## License
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-## Security Vulnerabilities
+## Acknowledgments
+
+- Laravel community for excellent documentation
+- Bootstrap for the responsive frontend framework
+- Font Awesome for the icon library
+
+## Support
+
+If you have any questions or issues, please create an issue in the GitHub repository or contact the development team.
+
+---
+
+**Note:** This is a demo application for educational purposes. Always implement proper security measures for production applications.
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
